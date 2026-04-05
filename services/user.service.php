@@ -1,37 +1,47 @@
 <?php
 
-require __DIR__."/../models/User.php";
+require __DIR__ . "/../models/User.php";
 
-function getAllUserService() {
-    $users = getAllUsers();
+function getAllUserService()
+{
 
-    return $users;
+    return getAllUsers();
 }
 
-function getUserByIdService($id) {
-    $user = getUserById($id);
-
-    return $user;
+function getUserByIdService($id)
+{
+    if (empty($id)) throw new Error("ID is required");
+    return getUserById($id);
 }
 
-function createUserService($post) {
+function createUserService($post)
+{
     $username = $post["username"];
     $password = $post["password"];
+    $createdAt = date("Y/m/d");
 
-    createUser($username,$password);
+    if (empty($username)) throw new Error("User name is required");
+    if (empty($password)) throw new Error("Password is required");
+
+    createUser($username, $password, $createdAt);
 }
 
-function updateUserService($id, $post) {
+function updateUserService($id, $post)
+{
     $username = $post["username"];
     $password = $post["password"];
     $role = $post["role"];
-    updateUser($id,$username,$password,$role);
+
+    if (empty($id)) throw new Error("ID is required");
+    if (empty($username)) throw new Error("Username is required");
+    if (empty($password)) throw new Error("Password is required");
+    updateUser($id, $username, $password, $role);
 }
 
-function deleteUserService($id) {
+function deleteUserService($id)
+{
+
+    
+    if (empty($id)) throw new Error("ID is required");
     deleteUser($id);
-}
-
-function countUserService() {
-    return countUser();
 }

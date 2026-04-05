@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2026 at 05:51 PM
+-- Generation Time: Apr 05, 2026 at 08:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `cw1841`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emails`
+--
+
+CREATE TABLE `emails` (
+  `id` int(11) NOT NULL,
+  `fromEmail` text NOT NULL,
+  `content` text NOT NULL,
+  `createdAt` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `emails`
+--
+
+INSERT INTO `emails` (`id`, `fromEmail`, `content`, `createdAt`) VALUES
+(2, 'duclhgcs220253@fpt.edu.vn', 'test', '2026-03-23');
 
 -- --------------------------------------------------------
 
@@ -41,8 +61,9 @@ CREATE TABLE `films` (
 --
 
 INSERT INTO `films` (`id`, `title`, `description`, `releaseYear`, `image`, `createdAt`) VALUES
-(4, 'spiderman', 'Spider-Man is a superhero in American comic books published by Marvel Comics. Created by writer-editor Stan Lee and artist Steve Ditko, he first appeared in the anthology comic book Amazing Fantasy #15 in the Silver Age of Comic Books.', 2008, '1774176917_spiderman.jpg', 2026),
-(5, 'Bat man', 'Batman is a superhero who appears in American comic books published by DC Comics. Batman was created by writer Bill Finger and artist Bob Kane, and debuted in the 27th issue of the comic book Detective Comics on March 30, 1939', 1998, '1774178132_batman.jpg', 2026);
+(17, 'spiderman', 'no way home', 2000, '1775298416_spiderman.jpg', 2026),
+(19, 'archet', 'archet', 2000, '1774871846_archer.jpg', 2026),
+(20, 'tintin', 'tintin', 2000, '1774871862_tintin.jpg', 2026);
 
 -- --------------------------------------------------------
 
@@ -53,6 +74,7 @@ INSERT INTO `films` (`id`, `title`, `description`, `releaseYear`, `image`, `crea
 CREATE TABLE `reviews` (
   `id` int(11) NOT NULL,
   `content` text NOT NULL,
+  `image` text NOT NULL,
   `rating` int(5) NOT NULL,
   `userId` int(11) NOT NULL,
   `filmId` int(11) NOT NULL,
@@ -63,11 +85,8 @@ CREATE TABLE `reviews` (
 -- Dumping data for table `reviews`
 --
 
-INSERT INTO `reviews` (`id`, `content`, `rating`, `userId`, `filmId`, `createdAt`) VALUES
-(8, 'test', 3, 4, 4, 2026),
-(9, 'amazing good job2 !!!\r\n', 5, 3, 4, 2026),
-(12, 'tét 2', 4, 3, 5, 2026),
-(13, 'hihi', 3, 3, 4, 2026);
+INSERT INTO `reviews` (`id`, `content`, `image`, `rating`, `userId`, `filmId`, `createdAt`) VALUES
+(25, 'nice', '1775298729_lord.jpg', 5, 13, 17, 2026);
 
 -- --------------------------------------------------------
 
@@ -88,12 +107,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `createdAt`) VALUES
-(3, 'user', '123456', 0, 0),
-(4, 'admin', '123456', 1, 0);
+(12, 'admin', '123456', 1, 2026),
+(13, 'user', '123456', 0, 2026);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `emails`
+--
+ALTER TABLE `emails`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `films`
@@ -120,22 +145,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `emails`
+--
+ALTER TABLE `emails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `films`
 --
 ALTER TABLE `films`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
@@ -145,8 +176,8 @@ ALTER TABLE `users`
 -- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`filmId`) REFERENCES `films` (`id`),
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`filmId`) REFERENCES `films` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

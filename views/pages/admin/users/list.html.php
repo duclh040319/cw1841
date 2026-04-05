@@ -48,13 +48,13 @@
                             <td class="text-end pe-4">
                                 <div class="btn-group shadow-sm">
                                     <a href="admin.php?admin=<?= $_SESSION["user"]["role"] ?>&page=users&action=edit&id=<?= htmlspecialchars($user["id"]) ?>" 
-                                       class="btn btn-sm btn-outline-primary" title="Edit User">Edit
+                                       class="btn btn-sm btn-outline-primary" title="Edit">
                                        <i class="bi bi-pencil"></i>
                                     </a>
                                     <?php if ($user["username"] !== $_SESSION["user"]["username"]): ?>
                                         <a href="admin.php?admin=<?= $_SESSION["user"]["role"] ?>&page=users&action=delete&id=<?= htmlspecialchars($user["id"]) ?>" 
                                            class="btn btn-sm btn-outline-danger" 
-                                           onclick="return confirm('Are you sure you want to delete this user?')" title="Delete User">Delete
+                                           onclick="return confirm('Are you sure you want to delete this user?')" title="Delete">
                                            <i class="bi bi-trash"></i>
                                         </a>
                                     <?php endif; ?>

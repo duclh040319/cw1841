@@ -12,10 +12,10 @@
                 <thead class="bg-light">
                     <tr>
                         <th class="ps-4" style="width: 80px;">ID</th>
-                        <th style="width: 150px;">Rating</th>
-                        <th>Content</th>
+                        <th style="width: 120px;">Rating</th>
+                        <th style="width: 100px;">Photo</th> <th>Content</th>
                         <th style="width: 180px;">Created At</th>
-                        <th class="text-end pe-4" style="width: 200px;">Actions</th>
+                        <th class="text-end pe-4" style="width: 180px;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,17 +27,33 @@
                                     $rating = $review["rating"];
                                     $badgeClass = $rating >= 4 ? 'bg-success' : ($rating <= 2 ? 'bg-danger' : 'bg-warning text-dark');
                                 ?>
-                                <span class="badge <?= $badgeClass ?> p-2">
+                                <span class="badge <?= $badgeClass ?> rounded-pill px-3">
                                     <?= htmlspecialchars($rating) ?> <i class="bi bi-star-fill small"></i>
                                 </span>
-                                <div class="mt-1 small text-muted">
+                                <div class="mt-1 small text-muted" style="letter-spacing: -1px;">
                                     <?= str_repeat('★', $rating) ?><?= str_repeat('☆', 5 - $rating) ?>
                                 </div>
                             </td>
+                            
                             <td>
-                                <p class="mb-0 text-dark small" style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.5;">
-                                    <?= htmlspecialchars($review["content"]) ?>
-                                </p>
+                                <?php if (!empty($review['image'])): ?>
+                                    <a href="uploads/<?= htmlspecialchars($review['image']) ?>" target="_blank">
+                                        <img src="uploads/<?= htmlspecialchars($review['image']) ?>" 
+                                             class="rounded border shadow-sm" 
+                                             style="width: 60px; height: 45px; object-fit: cover;"
+                                         >
+                                    </a>
+                                <?php else: ?>
+                                    <span class="text-muted small italic">No photo</span>
+                                <?php endif; ?>
+                            </td>
+
+                            <td>
+                                <div class="text-dark small" style="max-width: 300px;">
+                                    <p class="mb-0 text-truncate-2" style="display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;">
+                                        <?= htmlspecialchars($review["content"]) ?>
+                                    </p>
+                                </div>
                             </td>
                             <td>
                                 <div class="small fw-semibold text-secondary">
@@ -53,11 +69,11 @@
                                 <div class="btn-group">
                                     <a href="admin.php?admin=<?= $_SESSION["user"]["role"] ?>&page=reviews&action=edit&id=<?= htmlspecialchars($review["id"]) ?>" 
                                        class="btn btn-sm btn-outline-primary" title="Edit">
-                                       <i class="bi bi-pencil">Edit</i>
+                                       <i class="bi bi-pencil"></i>
                                     </a>
                                     <a href="admin.php?admin=<?= $_SESSION["user"]["role"] ?>&page=reviews&action=delete&id=<?= htmlspecialchars($review["id"]) ?>" 
                                        class="btn btn-sm btn-outline-danger" 
-                                       onclick="return confirm('Delete this review permanently?')" title="Delete">Delete
+                                       onclick="return confirm('Delete this review and its photo permanently?')" title="Delete">
                                        <i class="bi bi-trash"></i>
                                     </a>
                                 </div>
@@ -71,8 +87,8 @@
 </div>
 
 <?php if (empty($reviews)): ?>
-    <div class="text-center py-5">
+    <div class="text-center py-5 bg-white shadow-sm rounded mt-3">
         <i class="bi bi-chat-left-dots display-1 text-light"></i>
-        <p class="text-muted mt-3">No reviews found.</p>
+        <p class="text-muted mt-3">No reviews found in database.</p>
     </div>
 <?php endif; ?>

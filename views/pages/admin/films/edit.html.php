@@ -32,6 +32,7 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="image" class="form-label fw-semibold">Change Poster (Optional)</label>
+                                        <input type="hidden" name="old_image" value="<?= htmlspecialchars($film['image']) ?>">
                                         <input type="file" name="image" id="image" class="form-control" accept="image/*">
                                         <div class="form-text text-danger italic small">* Leave blank to keep current image.</div>
                                     </div>

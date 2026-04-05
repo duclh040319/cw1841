@@ -39,22 +39,22 @@ function getReviewByFilmId($id)
 
 
 
-function createReview($content, $rating, $userId, $filmId, $createdAt)
+function createReview($content,$image, $rating, $userId, $filmId, $createdAt)
 {
     global $pdo;
 
-    $sql = "INSERT INTO reviews(content,rating,userId,filmId,createdAt) VALUES(?,?,?,?,?);";
+    $sql = "INSERT INTO reviews(content,image,rating,userId,filmId,createdAt) VALUES(?,?,?,?,?,?);";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$content, $rating, $userId, $filmId, $createdAt]);
+    $stmt->execute([$content,$image, $rating, $userId, $filmId, $createdAt]);
 }
 
-function updateReview($id, $content, $rating, $createdAt)
+function updateReview($id, $content, $image, $rating, $createdAt)
 {
     global $pdo;
 
-    $sql = "UPDATE reviews SET content=?,rating=?,createdAt=? WHERE id=?;";
+    $sql = "UPDATE reviews SET content=?,image=?,rating=?,createdAt=? WHERE id=?;";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$content, $rating, $createdAt, $id]);
+    $stmt->execute([$content,$image, $rating, $createdAt, $id]);
 }
 
 function deleteReview($id)

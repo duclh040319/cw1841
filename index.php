@@ -15,6 +15,16 @@ $page = $_GET["page"] ?? "films";
 $action = $_GET["action"] ?? "list";
 
 switch ($page) {
+    case "contact":
+        require __DIR__ . "/controllers/contact.controller.php";
+        if ($action === "send") {
+            sendEmail();
+            header("location: index.php");
+            exit();
+        } else {
+            contactPage();
+        }
+        break;
 
     case "films":
         require_once __DIR__ . "/controllers/film.controller.php";
@@ -27,17 +37,23 @@ switch ($page) {
             $id = $_GET["filmId"];
             header("location: index.php?page=films&action=detail&id=" . $id);
             exit();
-        }elseif($action === "updateReview") {
-            
+        } elseif ($action === "updateReview") {
+
             updateReview1();
             $id = $_GET["filmId"];
-            header("location: index.php?page=films&action=detail&id=".$id);
+            header("location: index.php?page=films&action=detail&id=" . $id);
             exit();
-        }elseif ($action === "deleteReview") {
+        } elseif ($action === "deleteReview") {
             deleteReview1();
             $id = $_GET["filmId"];
-            header("location: index.php?page=films&action=detail&id=".$id);
+            header("location: index.php?page=films&action=detail&id=" . $id);
             exit();
+        } elseif ($action === "search") {
+            getAllSeach();
+        }elseif($action === "sortASC") {
+            getAllASC();
+        }elseif($action === "sortDESC") {
+            getAllDESC();
         }
          else {
 
@@ -46,7 +62,7 @@ switch ($page) {
 
         break;
     case "profile":
-        require __DIR__."/controllers/profile.controller.php";
+        require __DIR__ . "/controllers/profile.controller.php";
         profilePage();
         break;
 

@@ -26,6 +26,7 @@ function loginService() {
 function registerService() {
     $username = $_POST["username"];
     $password = $_POST["password"];
+    $createdAt = date('Y/m/d');
 
     $user = getUserByUsername($username);
 
@@ -33,5 +34,5 @@ function registerService() {
         throw new Error("User exist");
     }
 
-    createUser($username,$password);
+    createUser($username,$password,$createdAt);
 }

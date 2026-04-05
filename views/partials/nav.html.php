@@ -7,13 +7,25 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ms-auto align-items-center"> <?php if (!empty($_SESSION["user"])): ?>
+      
+      <form class="d-flex ms-auto me-auto" action="index.php" method="get">
+        <input type="hidden" name="page" value="films">
+        <input type="hidden" name="action" value="search">
+        <input class="form-control me-2" type="search" name="search" placeholder="Search movies..." aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+
+      <ul class="navbar-nav ms-auto align-items-center"> 
+        <?php if (!empty($_SESSION["user"])): ?>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active fw-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-person-circle"></i> <?= htmlspecialchars($_SESSION["user"]["username"]) ?>
             </a>
             <ul class="dropdown-menu dropdown-menu-end shadow border-0">
               <li><a class="dropdown-item" href="index.php?page=profile">My Profile</a></li>
+              <li><a class="dropdown-item" href="index.php?page=contact">Contact to admin</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item text-danger" href="index.php?page=logout">Logout</a></li>
             </ul>
@@ -22,12 +34,12 @@
           <li class="nav-item">
             <a class="nav-link" href="index.php?page=login">Login</a>
           </li>
-          <li class="nav-item ms-lg-2"> <a class="btn btn-primary btn-sm px-3 text-white fw-bold" href="index.php?page=register">
+          <li class="nav-item ms-lg-2"> 
+            <a class="btn btn-primary btn-sm px-3 text-white fw-bold" href="index.php?page=register">
                 Register
             </a>
           </li>
         <?php endif; ?>
-
       </ul>
     </div>
   </div>

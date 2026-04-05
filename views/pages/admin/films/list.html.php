@@ -43,13 +43,13 @@
                             <td class="text-end pe-4">
                                 <div class="btn-group shadow-sm">
                                     <a href="admin.php?admin=<?= $_SESSION["user"]["role"] ?>&page=films&action=edit&id=<?= htmlspecialchars($film["id"]) ?>"
-                                        class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-pencil-square"></i> Edit
+                                        class="btn btn-sm btn-outline-primary" title="Edit">
+                                        <i class="bi bi-pencil-square"></i> 
                                     </a>
                                     <a href="admin.php?admin=<?= $_SESSION["user"]["role"] ?>&page=films&action=delete&id=<?= htmlspecialchars($film["id"]) ?>"
                                         class="btn btn-sm btn-outline-danger"
-                                        onclick="return confirm('Are you sure you want to delete this film?')">
-                                        <i class="bi bi-trash"></i> Delete
+                                        onclick="return confirm('Are you sure you want to delete this film?')" title="Delete">
+                                        <i class="bi bi-trash"></i> 
                                     </a>
                                 </div>
                             </td>

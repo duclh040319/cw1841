@@ -1,21 +1,24 @@
 <?php
 
-require_once __DIR__."/../../services/film.service.php";
-require_once __DIR__."/../../services/review.service.php";
-require_once __DIR__."/../../services/user.service.php";
+require_once __DIR__ . "/../../services/film.service.php";
+require_once __DIR__ . "/../../services/review.service.php";
+require_once __DIR__ . "/../../services/user.service.php";
 
-function getCountReview() {
-    $count = countReview();
-    return $count;
-}
+function dashboardPageAdmin()
+{
+    try {
 
-function getCountFilm() {
-    $count = countFilmService();
-    return $count;
-}
+        $header = "Dashboard";
+        $films = getAllFilmsService();
+        $users = getAllUserService();
+        $reviews = getAllReviewsService();
 
-function getCountUser() {
-    $count = countUserService();
+        ob_start();
+        include __DIR__ . "/../../views/pages/admin/dashboard.html.php";
+        $content = ob_get_clean();
 
-    return $count;
+        include __DIR__ . "/../../views/layouts/admin.php";
+    } catch (Error $e) {
+        echo $e->getMessage();
+    }
 }

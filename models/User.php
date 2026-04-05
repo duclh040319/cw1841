@@ -31,13 +31,13 @@ function getUserByUsername($username) {
     return $stmt->fetch();
 }
 
-function createUser($username, $password)
+function createUser($username, $password, $createdAt)
 {
     global $pdo;
 
-    $sql = "INSERT INTO users(username,password) VALUES(?,?);";
+    $sql = "INSERT INTO users(username,password,createdAt) VALUES(?,?,?);";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$username, $password]);
+    $stmt->execute([$username, $password, $createdAt]);
 }
 
 function updateUser($id, $username, $password, $role)

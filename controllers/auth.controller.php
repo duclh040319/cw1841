@@ -15,17 +15,28 @@ function login()
 
 function loginPage()
 {
-    ob_start();
-    include __DIR__ . "/../views/auth/login.html.php";
-    $content = ob_get_clean();
-    include __DIR__ . "/../views/layouts/main.php";
+    try {
+        $title = "Login";
+        ob_start();
+        include __DIR__ . "/../views/auth/login.html.php";
+        $content = ob_get_clean();
+        include __DIR__ . "/../views/layouts/main.php";
+    } catch (Error $e) {
+        echo $e->getMessage();
+    }
 }
 function registerPage()
 {
-    ob_start();
-    include __DIR__ . "/../views/auth/register.html.php";
-    $content = ob_get_clean();
-    include __DIR__ . "/../views/layouts/main.php";
+    try {
+
+        $title = "Register";
+        ob_start();
+        include __DIR__ . "/../views/auth/register.html.php";
+        $content = ob_get_clean();
+        include __DIR__ . "/../views/layouts/main.php";
+    } catch (Error $e) {
+        echo $e->getMessage();
+    }
 }
 
 function register()

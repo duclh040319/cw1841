@@ -1,28 +1,86 @@
 <?php
-require_once __DIR__."/../../services/film.service.php";
+require_once __DIR__ . "/../../services/film.service.php";
 
-function getAllFilmsAdmin() {
-    $films = getAllFilmsService();
 
-    return $films;
+
+function listFilmsPageAdmin()
+{
+    try {
+
+        $header = "Films";
+        $films = getAllFilmsService();
+        ob_start();
+        include __DIR__ . "/../../views/pages/admin/films/list.html.php";
+        $content = ob_get_clean();
+        include __DIR__ . "/../../views/layouts/admin.php";
+    } catch (Error $e) {
+        echo $e->getMessage();
+    }
 }
 
-function getFilmByIdAdmin() {
-    $id = $_GET["id"];
-    $film = getFilmByIdService($id);
-    return $film;
+function createFilmPageAdmin()
+{
+    try {
+
+        $header = "Films";
+
+        ob_start();
+        include __DIR__ . "/../../views/pages/admin/films/create.html.php";
+        $content = ob_get_clean();
+        include __DIR__ . "/../../views/layouts/admin.php";
+    } catch (Error $e) {
+        echo $e->getMessage();
+    }
 }
 
-function createFilmAdmin() {
-    createFilmService($_POST);
+function createFilmAdmin()
+{
+    try {
+
+        $filmId = createFilmService($_POST);
+        header("location: admin.php?admin=1&page=films");
+        exit();
+    } catch (Error $e) {
+        echo $e->getMessage();
+    }
 }
 
-function updateFilmAdmin() {
-    $id = $_GET["id"];
-    updateFilmService($id,$_POST);
+function editFilmPageAdmin()
+{
+    try {
+
+        $id = $_GET["id"];
+        $film = getFilmByIdService($id);
+        $header = "Films";
+        ob_start();
+        include __DIR__ . "/../../views/pages/admin/films/edit.html.php";
+        $content = ob_get_clean();
+        include __DIR__ . "/../../views/layouts/admin.php";
+    } catch (Error $e) {
+        echo $e->getMessage();
+    }
 }
 
-function deleteFilmByIdAdmin() {
-    $id = $_GET["id"];
-    deleteFilmService($id);
+function updateFilmAdmin()
+{
+    try {
+        $id = $_GET["id"];
+        updateFilmService($id, $_POST);
+        header("location: admin.php?admin=1&page=films");
+        exit();
+    } catch (Error $e) {
+        echo $e->getMessage();
+    }
+}
+
+function deleteFilmByIdAdmin()
+{
+    try {
+        $id = $_GET["id"];
+        deleteFilmService($id);
+        header("location: admin.php?admin=1&page=films");
+        exit();
+    } catch (Error $e) {
+        echo $e->getMessage();
+    }
 }

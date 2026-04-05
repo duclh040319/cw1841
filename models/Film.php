@@ -28,6 +28,8 @@ function createFilm($title, $description, $releaseYear, $image, $createdAt)
     $sql = "INSERT INTO films(title,description,releaseYear,image,createdAt) VALUES(?,?,?,?,?);";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$title, $description, $releaseYear, $image, $createdAt]);
+
+    return $pdo->lastInsertId();
 }
 
 function updateFilm($id, $title, $description, $releaseYear, $image, $createdAt)
@@ -43,16 +45,43 @@ function deleteFilm($id)
 {
     global $pdo;
 
+
+
     $sql = "DELETE FROM films WHERE id=?;";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
 }
 
-function countFilm()
+function searchFilm($title)
 {
     global $pdo;
 
-    $sql = "SELECT COUNT(*) FROM films;";
+    $sql = "SELECT * FROM films WHERE title LIKE ?";
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([$title . '%']);
+
+    return $stmt->fetchAll();
+}
+
+function sortFimlASC()
+{
+    global $pdo;
+
+    $sql = "SELECT * FROM films ORDER BY title ASC";
+
     $stmt = $pdo->query($sql);
-    return $stmt->fetchColumn();
+
+    return $stmt->fetchAll();
+}
+
+function sortFilmDESC()
+{
+    global $pdo;
+
+    $sql = "SELECT * FROM films ORDER BY title DESC";
+
+    $stmt = $pdo->query($sql);
+
+    return $stmt->fetchAll();
 }

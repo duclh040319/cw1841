@@ -11,13 +11,11 @@ function getAllFilmsService()
 
 function getFilmByIdService($id)
 {
-    // handle error
+    if (empty($id)) throw new Error("ID is required");
 
-
-    // 
     $film = getFilmById($id);
     if (empty($film)) {
-        return [];
+        throw new Error("Film not found");
     }
 
     return $film;
@@ -25,32 +23,33 @@ function getFilmByIdService($id)
 
 function createFilmService($post)
 {
-    // handle error
 
     // 
     $title = $post["title"];
     $description = $post["description"];
     $releaseYear = $post["releaseYear"];
-    $image = "";;
+    $image = "";
     $createdAt = date('Y-m-d');
 
-    if(isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
-        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    if (empty($title)) throw new Error("Title is required");
+
+
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['image']['tmp_name'];
         $fileName = $_FILES['image']['name'];
-        
+
         $newFileName = time() . '_' . $fileName;
-        
+
         $uploadFileDir = __DIR__ . '/../uploads/';
         $dest_path = $uploadFileDir . $newFileName;
 
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
-            $image = $newFileName; 
+            $image = $newFileName;
         }
     }
-    }
 
-    createFilm($title, $description, $releaseYear, $image, $createdAt);
+
+    return createFilm($title, $description, $releaseYear, $image, $createdAt);
 }
 
 function updateFilmService($id, $post)
@@ -58,22 +57,47 @@ function updateFilmService($id, $post)
     $title = $post["title"];
     $description = $post["description"];
     $releaseYear = $post["releaseYear"];
-    $image = $post["image"];
     $createdAt = date('Y-m-d');
+
+    $image = $post["old_image"];
+
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['image']['tmp_name'];
+        $fileName = $_FILES['image']['name'];
+
+        $newFileName = time() . '_' . $fileName;
+
+        $uploadFileDir = __DIR__ . '/../uploads/';
+        $dest_path = $uploadFileDir . $newFileName;
+
+        if (move_uploaded_file($fileTmpPath, $dest_path)) {
+            $image = $newFileName;
+        }
+    }
 
     updateFilm($id, $title, $description, $releaseYear, $image, $createdAt);
 }
 
 function deleteFilmService($id)
 {
-    // handle error
-
-    // 
+    if (empty($id)) throw new Error("ID is required");
 
     deleteFilm($id);
 }
 
-function countFilmService()
+function searchFilmService($title)
 {
-    return countFilm();
+    if (empty($title)) throw new Error("Title is empty");
+
+    return searchFilm($title);
+}
+
+function sortFilmASCService()
+{
+    return sortFimlASC();
+}
+
+function sortFilmDESCService()
+{
+    return sortFilmDESC();
 }
