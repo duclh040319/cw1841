@@ -19,8 +19,6 @@
                     Z-A
                 </a>
             </div>
-
-            
         </div>
     </div>
 
@@ -28,11 +26,20 @@
         <?php foreach ($films ?? [] as $film): ?>
             <div class="col">
                 <div class="card h-100 shadow-sm border">
-                    <div style="height: 350px;">
+                    <div style="height: 350px; position: relative;">
                         <img src="uploads/<?= htmlspecialchars($film['image']) ?>"
                             class="card-img-top h-100 w-100"
                             style="object-fit: cover;"
                             alt="<?= htmlspecialchars($film["title"]) ?>">
+                        
+                        <div class="position-absolute top-0 end-0 p-2">
+                            <form action="index.php?page=wishlist&action=add" method="post">
+                                <input type="hidden" name="film_id" value="<?= $film['id'] ?>">
+                                <button type="submit" class="btn btn-white btn-sm rounded-circle shadow-sm text-danger border" title="Add to Wishlist">
+                                    <i class="bi bi-heart"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
 
                     <div class="card-body d-flex flex-column">
@@ -44,11 +51,18 @@
                             <?= mb_strimwidth(htmlspecialchars($film["description"]), 0, 80, "...") ?>
                         </p>
 
-                        <div class="mt-auto">
+                        <div class="mt-auto d-flex gap-2">
                             <a href="index.php?page=films&action=detail&id=<?= htmlspecialchars($film["id"]) ?>"
-                                class="btn btn-primary w-100 fw-bold">
-                                View Detail <i class="bi bi-chevron-right"></i>
+                                class="btn btn-primary flex-grow-1 fw-bold">
+                                Detail <i class="bi bi-chevron-right"></i>
                             </a>
+                            
+                            <form action="index.php?page=wishlist&action=add" method="post">
+                                <input type="hidden" name="film_id" value="<?= $film['id'] ?>">
+                                <button type="submit" class="btn btn-outline-danger" title="Add to Wishlist">
+                                    <i class="bi bi-heart-fill"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

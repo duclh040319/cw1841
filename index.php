@@ -1,20 +1,37 @@
 <?php
-
-require __DIR__ . "/middlewares/auth.middleware.php";
 session_start();
 
+require __DIR__ . "/middlewares/auth.middleware.php";
 
 
-if (!empty($_SESSION["user"]) && $_SESSION["user"]["role"] === 1) {
+
+if (!empty($_SESSION["user"]) && $_SESSION["user"]["role"] === "1") {
     header("location: admin.php");
     exit();
 }
+
+
 
 
 $page = $_GET["page"] ?? "films";
 $action = $_GET["action"] ?? "list";
 
 switch ($page) {
+    case "wishlist":
+        require __DIR__ . "/controllers/wishlist.controller.php";
+        requireLogin();
+
+        if($action === "delete") {
+            deleteWishlist1();
+
+        }elseif($action === "add") {
+            addWishlist1();
+        }
+        else {
+            wishlistPage();
+
+        }
+        break;
     case "contact":
         require __DIR__ . "/controllers/contact.controller.php";
         if ($action === "send") {
@@ -50,12 +67,11 @@ switch ($page) {
             exit();
         } elseif ($action === "search") {
             getAllSeach();
-        }elseif($action === "sortASC") {
+        } elseif ($action === "sortASC") {
             getAllASC();
-        }elseif($action === "sortDESC") {
+        } elseif ($action === "sortDESC") {
             getAllDESC();
-        }
-         else {
+        } else {
 
             getAll();
         }

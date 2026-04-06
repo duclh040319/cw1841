@@ -25,6 +25,7 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end shadow border-0">
               <li><a class="dropdown-item" href="index.php?page=profile">My Profile</a></li>
+              <li><a class="dropdown-item" href="index.php?page=wishlist">Wishlist</a></li>
               <li><a class="dropdown-item" href="index.php?page=contact">Contact to admin</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item text-danger" href="index.php?page=logout">Logout</a></li>
