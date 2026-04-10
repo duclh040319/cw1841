@@ -7,7 +7,7 @@ function requireLogin() {
 }
 
 function requireAdmin() {
-    if (empty($_SESSION["user"]) || $_SESSION["user"]["role"] !== "1") {
+    if (empty($_SESSION["user"]) || (int)$_SESSION["user"]["role"] !== 1) {
         header("location: index.php");
         exit();
     }

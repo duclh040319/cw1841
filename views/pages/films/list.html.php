@@ -32,14 +32,7 @@
                             style="object-fit: cover;"
                             alt="<?= htmlspecialchars($film["title"]) ?>">
                         
-                        <div class="position-absolute top-0 end-0 p-2">
-                            <form action="index.php?page=wishlist&action=add" method="post">
-                                <input type="hidden" name="film_id" value="<?= $film['id'] ?>">
-                                <button type="submit" class="btn btn-white btn-sm rounded-circle shadow-sm text-danger border" title="Add to Wishlist">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </form>
-                        </div>
+                        
                     </div>
 
                     <div class="card-body d-flex flex-column">
