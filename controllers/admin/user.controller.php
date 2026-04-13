@@ -83,13 +83,6 @@ function deleteUserAdmin()
         header("location: admin.php?admin=1&page=users");
         exit();
     } catch (Error $e) {
-        $header = "Users";
-        $users = getAllUserService();
-        $err = $e->getMessage();
-        ob_start();
-        include __DIR__ . "/../../views/pages/admin/users/list.html.php";
-
-        $content = ob_get_clean();
-        include __DIR__ . "/../../views/layouts/admin.php";
+        echo $e->getMessage();
     }
 }

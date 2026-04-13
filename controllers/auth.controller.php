@@ -7,9 +7,7 @@ function login()
     try {
         loginService();
     } catch (Error $e) {
-        header("location: index.php?page=login");
         echo $e->getMessage();
-        exit();
     }
 }
 
@@ -44,8 +42,6 @@ function register()
     try {
         registerService();
     } catch (Error $e) {
-        header("location: index.php?page=register");
         echo $e->getMessage();
-        exit();
     }
 }
