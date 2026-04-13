@@ -82,7 +82,19 @@ function deleteFilmService($id)
 {
     if (empty($id)) throw new Error("ID is required");
 
-    deleteFilm($id);
+    $film = getFilmById($id);
+
+    if ($film) {
+        $imageName = $film['image'];
+        $filePath = 'uploads/' . $imageName;
+
+
+        if (!empty($imageName) && file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        deleteFilm($id);
+    }
 }
 
 function searchFilmService($title)
