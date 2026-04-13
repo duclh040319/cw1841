@@ -1,24 +1,28 @@
 <?php
 require __DIR__ . "/../models/Review.php";
 
+
 function getAllReviewsService()
 {
 
-    return getAllReviews();
+    return getAllReviews() ?? [];
 }
 
 function getReviewByIdService($id)
 {
     if (empty($id)) throw new Error("ID is required");
+    $review = getReviewById($id);
+    if (empty($review)) throw new Error("Review is not found");
 
-    return getReviewById($id);
+    return $review;
 }
 
 function getReviewByFilmIdService($id)
 {
     if (empty($id)) throw new Error("ID is required");
+    $review = getReviewByFilmId($id);
 
-    return getReviewByFilmId($id);
+    return $review;
 }
 
 function createReviewService($content, $rating, $filmId)

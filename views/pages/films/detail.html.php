@@ -1,7 +1,14 @@
-<div class="mb-4">
+<div class="mb-4 d-flex justify-content-between align-items-center">
     <a href="index.php?page=films" class="btn btn-outline-secondary shadow-sm">
-        <i class="bi bi-arrow-left"></i>  Back to Films
+        <i class="bi bi-arrow-left"></i> Back to Films
     </a>
+
+    <form action="index.php?page=wishlist&action=add" method="post">
+        <input type="hidden" name="film_id" value="<?= $film['id'] ?>">
+        <button type="submit" class="btn btn-outline-danger shadow-sm fw-bold">
+            <i class="bi bi-heart-fill me-1"></i> Add to Wishlist
+        </button>
+    </form>
 </div>
 
 <div class="row bg-white p-4 shadow-sm rounded mb-4">
@@ -11,7 +18,11 @@
             alt="<?= htmlspecialchars($film["title"]) ?>">
     </div>
     <div class="col-md-8">
-        <h1 class="display-5 fw-bold"><?= htmlspecialchars($film["title"]) ?></h1>
+        <div class="d-flex justify-content-between align-items-start">
+            <h1 class="display-5 fw-bold"><?= htmlspecialchars($film["title"]) ?></h1>
+
+        </div>
+
         <p class="badge bg-secondary fs-6"><?= htmlspecialchars($film["releaseYear"]) ?></p>
         <hr>
         <p class="lead text-muted">
@@ -21,12 +32,12 @@
 </div>
 
 <div class="card mb-4 border-0 shadow-sm">
-    <form class="card-body p-4" method="post" 
-          action="index.php?page=films&action=review&filmId=<?= htmlspecialchars($film["id"]) ?>" 
-          enctype="multipart/form-data">
-        
+    <form class="card-body p-4" method="post"
+        action="index.php?page=films&action=review&filmId=<?= htmlspecialchars($film["id"]) ?>"
+        enctype="multipart/form-data">
+
         <h4 class="card-title mb-3">Write your review</h4>
-        
+
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label class="form-label fw-bold small text-uppercase">Rating</label>
@@ -38,7 +49,7 @@
                     <option value="1">1 ⭐ - Terrible</option>
                 </select>
             </div>
-            
+
             <div class="col-md-8 mb-3">
                 <label class="form-label fw-bold small text-uppercase">Attach Photo (Optional)</label>
                 <input type="file" name="image" class="form-control shadow-none" accept="image/*">
@@ -48,7 +59,7 @@
         <div class="mb-3">
             <textarea class="form-control shadow-none" rows="3" placeholder="What did you think about this film?" name="content" required></textarea>
         </div>
-        
+
         <button class="btn btn-primary px-4 fw-bold" type="submit">
             <i class="bi bi-send me-1"></i> POST REVIEW
         </button>
@@ -102,17 +113,17 @@
                                 </span>
                             </h6>
                             <p class="mb-2 text-dark"><?= htmlspecialchars($review["content"]) ?></p>
-                            
+
                             <?php if (!empty($review['image'])): ?>
                                 <div class="mb-3">
-                                    <img src="uploads/<?= htmlspecialchars($review['image']) ?>" 
-                                         class="rounded shadow-sm border border-light" 
-                                         style="max-width: 200px; max-height: 150px; object-fit: cover; cursor: zoom-in;"
-                                         onclick="window.open(this.src)"
-                                         alt="Review photo">
+                                    <img src="uploads/<?= htmlspecialchars($review['image']) ?>"
+                                        class="rounded shadow-sm border border-light"
+                                        style="max-width: 200px; max-height: 150px; object-fit: cover; cursor: zoom-in;"
+                                        onclick="window.open(this.src)"
+                                        alt="Review photo">
                                 </div>
                             <?php endif; ?>
-                            
+
                         </div>
 
                         <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["username"] === $review["username"]): ?>
@@ -123,7 +134,7 @@
                                 </a>
                                 <a href="index.php?page=films&action=deleteReview&id=<?= $review['id'] ?>&filmId=<?= $film['id'] ?>"
                                     class="btn btn-sm btn-outline-danger"
-                                    onclick="return confirm('Delete this review?')">
+                                    onclick="return confirm('Delete this review?')" title="Delete">
                                     <i class="bi bi-trash"></i>
                                 </a>
                             </div>

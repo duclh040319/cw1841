@@ -32,6 +32,20 @@ function addWishlist($filmId, $userId)
     $stmt->execute([$filmId, $userId]);
 }
 
+
+function getWishlistByFilmId($filmId)
+{
+    global $pdo;
+
+    $sql = "SELECT wishlist.* FROM wishlist WHERE wishlist.filmId=?";
+
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([$filmId]);
+
+    return $stmt->fetch();
+}
+
 function getWishlistById($id)
 {
     global $pdo;

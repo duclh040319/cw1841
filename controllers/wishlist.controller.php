@@ -24,10 +24,9 @@ function addWishlist1()
     try {
 
         $filmId = $_POST["film_id"];
-        $wishlistId = $_POST["wishlistId"];
         $userId = $_SESSION["user"]["id"];
 
-        addWishListService($filmId, $userId, $wishlistId);
+        addWishListService($filmId, $userId);
         header("location: index.php");
         exit();
     } catch (Error $e) {

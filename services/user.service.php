@@ -16,8 +16,8 @@ function getUserByIdService($id)
 
 function createUserService($post)
 {
-    $username = $post["username"];
-    $password = $post["password"];
+    $username = $post["username"] . trim(' ');
+    $password = $post["password"] . trim(' ');
     $createdAt = date("Y/m/d");
 
     if (empty($username)) throw new Error("User name is required");
@@ -28,8 +28,8 @@ function createUserService($post)
 
 function updateUserService($id, $post)
 {
-    $username = $post["username"];
-    $password = $post["password"];
+    $username = $post["username"] . trim(' ');
+    $password = $post["password"] . trim(' ');
     $role = $post["role"];
 
     if (empty($id)) throw new Error("ID is required");
@@ -41,7 +41,12 @@ function updateUserService($id, $post)
 function deleteUserService($id)
 {
 
-    
+
     if (empty($id)) throw new Error("ID is required");
+
+    $user = getUserById($id);
+    if (empty($id)) throw new Error("User not found");
+
+    if ((int)$user["role"] === 1) throw new Error("Account is admin cannot delete");
     deleteUser($id);
 }

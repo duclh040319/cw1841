@@ -56,7 +56,7 @@ function searchFilm($title)
 {
     global $pdo;
 
-    $sql = "SELECT * FROM films WHERE title LIKE ?";
+    $sql = "SELECT * FROM films WHERE title LIKE ?" ;
     $stmt = $pdo->prepare($sql);
 
     $stmt->execute([$title . '%']);

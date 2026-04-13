@@ -6,12 +6,12 @@ function getAllWishlistService($userId)
     return getAllWishlist($userId);
 }
 
-function addWishListService($filmId, $userId, $wishlistId)
+function addWishListService($filmId, $userId)
 {
     if (empty($userId)) throw new Error("User not login");
     if (empty($filmId)) throw new Error("Film ID required");
 
-    $item = getWishlistById($wishlistId);
+    $item = getWishlistByFilmId($filmId);
     if(!empty($item)) throw new Error("Item exist");
 
     addWishList($filmId, $userId);
