@@ -1,11 +1,13 @@
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-                <div class="row g-0">
+        <div class="col-lg-8"> <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div class="row g-0 justify-content-center bg-white">
                     
+                    <div class="col-md-10 p-5"> <div class="text-center mb-4">
+                            <h2 class="fw-bold">Contact Us</h2>
+                            <p class="text-muted">Have a question? We'd love to hear from you.</p>
+                        </div>
 
-                    <div class="col-md-7 p-5 bg-white">
                         <?php if (isset($_SESSION['success'])): ?>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <?= $_SESSION['success'];
@@ -15,23 +17,25 @@
                         <?php endif; ?>
 
                         <form action="index.php?page=contact&action=send" method="post">
-                            
                             <div class="mb-3">
-                                <label class="form-label fw-bold">Email Address</label>
-                                <input type="email" name="fromEmail" class="form-control" placeholder="name@example.com" required>
+                                <label class="form-label fw-bold small text-uppercase text-muted">Email Address</label>
+                                <input type="email" name="fromEmail" class="form-control form-control-lg fs-6" placeholder="name@example.com" required>
                             </div>
                             
                             <div class="mb-4">
-                                <label class="form-label fw-bold">Message</label>
-                                <textarea name="content" class="form-control" rows="4" placeholder="How can we help you?" required></textarea>
+                                <label class="form-label fw-bold small text-uppercase text-muted">Message</label>
+                                <textarea name="content" class="form-control form-control-lg fs-6" rows="5" placeholder="How can we help you?" required></textarea>
                             </div>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary fw-bold py-2 shadow-sm">
-                                    <i class="bi bi-send-fill me-2"></i> Send Message
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary fw-bold py-3 shadow-sm rounded-3">
+                                    <i class="bi bi-send-fill me-2"></i> SEND MESSAGE
                                 </button>
+                                <a href="index.php" class="btn btn-link btn-sm text-decoration-none text-muted">Back to Home</a>
                             </div>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>

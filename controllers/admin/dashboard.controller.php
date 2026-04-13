@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../../services/film.service.php";
 require_once __DIR__ . "/../../services/review.service.php";
 require_once __DIR__ . "/../../services/user.service.php";
+require_once __DIR__ . "/../../services/contact.service.php";
 
 function dashboardPageAdmin()
 {
@@ -12,6 +13,7 @@ function dashboardPageAdmin()
         $films = getAllFilmsService();
         $users = getAllUserService();
         $reviews = getAllReviewsService();
+        $emails = getAllEmailsService();
 
         ob_start();
         include __DIR__ . "/../../views/pages/admin/dashboard.html.php";

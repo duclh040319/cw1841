@@ -22,18 +22,18 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             <?php foreach ($wishlist as $item): ?>
                 <div class="col">
-                    <div class="card h-100 shadow-sm border-0 position-relative">
+                    <div class="card h-100 shadow-sm border-0 position-relative bg-white">
                         <form action="index.php?page=wishlist&action=delete" method="post" class="position-absolute top-0 end-0 p-2" style="z-index: 10;">
                             <input type="hidden" name="wishlistId" value="<?= $item['wishlist_id'] ?>">
-                            <button type="submit" class="btn btn-light btn-sm rounded-circle shadow-sm text-danger" title="Remove from wishlist">
+                            <button type="submit" class="btn btn-light btn-sm rounded-circle shadow-sm text-danger border" title="Remove from wishlist">
                                 <i class="bi bi-x-lg"></i>
                             </button>
                         </form>
 
-                        <div class="bg-light" style="height: 300px;">
+                        <div class="bg-light d-flex align-items-center justify-content-center p-3" style="height: 300px; overflow: hidden;">
                             <img src="uploads/<?= htmlspecialchars($item['image']) ?>" 
-                                 class="card-img-top h-100 w-100" 
-                                 style="object-fit: cover;" 
+                                 class="img-fluid rounded shadow-sm" 
+                                 style="max-height: 100%; object-fit: contain; image-rendering: -webkit-optimize-contrast;" 
                                  alt="<?= htmlspecialchars($item['title']) ?>">
                         </div>
 
