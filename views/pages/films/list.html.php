@@ -1,5 +1,6 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+        
         <div>
             <h1 class="fw-bold text-primary mb-0">🎬 List Films Page</h1>
             <span class="badge bg-secondary"><?= count($films ?? []) ?> movies found</span>

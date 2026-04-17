@@ -31,8 +31,7 @@ function addWishlist1()
         exit();
     } catch (Error $e) {
         echo $e->getMessage();
-        header("location: index.php");
-        exit();
+        
     }
 }
 

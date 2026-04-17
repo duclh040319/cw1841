@@ -9,6 +9,7 @@ function getAll()
         $title = "List films page";
         $films = getAllFilmsService();
 
+
         ob_start();
         include __DIR__ . "/../views/pages/films/list.html.php";
         $content = ob_get_clean();
@@ -54,7 +55,8 @@ function getAllASC()
     }
 }
 
-function getAllDESC() {
+function getAllDESC()
+{
     try {
         $title = "Sort Films";
         $films = sortFilmDESCService();
@@ -78,6 +80,9 @@ function getById()
         $film = getFilmByIdService($id);
         $title = $film["title"];
         $reviews = getReviewByFilmIdService($id);
+        $err = $_SESSION["review_err"] ?? "";
+        unset($_SESSION["review_err"]);
+
 
         ob_start();
         include __DIR__ . "/../views/pages/films/detail.html.php";
@@ -96,8 +101,13 @@ function create()
         $content = $_POST["content"];
         $rating = $_POST["rating"];
         createReviewService($content, $rating, $id);
+        header("location: index.php?page=films&action=detail&id=" . $id);
+        exit();
     } catch (Error $e) {
-        echo $e->getMessage();
+        $_SESSION["review_err"] =  $e->getMessage();
+        $id = $_GET["filmId"];
+        header('location: index.php?page=films&action=detail&id=' . $id);
+        exit();
     }
 }
 

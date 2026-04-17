@@ -6,6 +6,8 @@ function listUserPageAdmin()
     try {
         $header = "Users";
         $users = getAllUserService();
+        $err = $_SESSION["deleteuser_err"]  ?? "";
+        unset($_SESSION["deleteuser_err"]);
         ob_start();
         include __DIR__ . "/../../views/pages/admin/users/list.html.php";
 
@@ -83,6 +85,8 @@ function deleteUserAdmin()
         header("location: admin.php?admin=1&page=users");
         exit();
     } catch (Error $e) {
-        echo $e->getMessage();
+        $_SESSION["deleteuser_err"] =  $e->getMessage();
+        header("location: admin.php?admin=1&page=users");
+        exit();
     }
 }

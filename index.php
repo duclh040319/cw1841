@@ -36,8 +36,7 @@ switch ($page) {
         require __DIR__ . "/controllers/contact.controller.php";
         if ($action === "send") {
             sendEmail();
-            header("location: index.php");
-            exit();
+            
         } else {
             contactPage();
         }
@@ -51,9 +50,7 @@ switch ($page) {
         } elseif ($action === "review") {
             requireLogin();
             create();
-            $id = $_GET["filmId"];
-            header("location: index.php?page=films&action=detail&id=" . $id);
-            exit();
+            
         } elseif ($action === "updateReview") {
 
             updateReview1();

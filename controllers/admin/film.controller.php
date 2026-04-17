@@ -23,6 +23,8 @@ function createFilmPageAdmin()
     try {
 
         $header = "Films";
+        $err = $_SESSION["addfilm_err"] ?? "";
+        unset($_SESSION["addfilm_err"]);
 
         ob_start();
         include __DIR__ . "/../../views/pages/admin/films/create.html.php";
@@ -41,7 +43,9 @@ function createFilmAdmin()
         header("location: admin.php?admin=1&page=films");
         exit();
     } catch (Error $e) {
-        echo $e->getMessage();
+        $_SESSION["addfilm_err"] = $e->getMessage();
+        header("location: admin.php?admin=1&page=films&action=create");
+        exit();
     }
 }
 

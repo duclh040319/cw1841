@@ -4,6 +4,14 @@
         <i class="bi bi-person-plus-fill"></i> Add New User
     </a>
 </div>
+<?php if (!empty($err)): ?>
+    <div class="alert alert-danger d-flex align-items-center py-2 shadow-sm" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <div class="small fw-bold">
+            <?= htmlspecialchars($err) ?>
+        </div>
+    </div>
+<?php endif; ?>
 
 <div class="card border-0 shadow-sm">
     <div class="card-body p-0">
@@ -72,34 +80,5 @@
     <div class="text-center py-5">
         <p class="text-muted">No users found.</p>
     </div>
-<?php endif; ?>
-
-<?php if (!empty($err)): ?>
-    <div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow">
-                <div class="modal-header bg-danger text-white border-0">
-                    <h5 class="modal-title fw-bold"><i class="bi bi-exclamation-triangle-fill me-2"></i> Error</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body py-4 text-center">
-                    <div class="text-danger mb-3">
-                        <i class="bi bi-x-circle" style="font-size: 3rem;"></i>
-                    </div>
-                    <p class="fs-5 text-dark mb-0"><?= htmlspecialchars($err) ?></p>
-                </div>
-                <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-secondary w-100 fw-bold" data-bs-dismiss="modal">Understand</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var myModal = new bootstrap.Modal(document.getElementById('errorModal'));
-            myModal.show();
-        });
-    </script>
 <?php endif; ?>
 

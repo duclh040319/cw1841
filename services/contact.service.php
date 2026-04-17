@@ -4,8 +4,8 @@ require __DIR__ . "/../models/Email.php";
 
 function createEmailService($fromEmail, $content)
 {
-    if (empty($fromEmail)) throw new Error("Email is required");
-    if (empty($content)) throw new Error("Content is required");
+    if ($fromEmail === "") throw new Error("Email is required");
+    if ($content === "") throw new Error("Content is required");
     $createdAt = date('Y-m-d');
     createEmail($fromEmail, $content, $createdAt);
 }

@@ -1,3 +1,11 @@
+<?php if (!empty($err)): ?>
+    <div class="alert alert-danger d-flex align-items-center py-2 shadow-sm" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <div class="small fw-bold">
+            <?= htmlspecialchars($err) ?>
+        </div>
+    </div>
+<?php endif; ?>
 <div class="mb-4 d-flex justify-content-between align-items-center">
     <a href="index.php?page=films" class="btn btn-outline-secondary shadow-sm">
         <i class="bi bi-arrow-left"></i> Back to Films
@@ -57,7 +65,7 @@
         </div>
 
         <div class="mb-3">
-            <textarea class="form-control shadow-none" rows="3" placeholder="What did you think about this film?" name="content" required></textarea>
+            <textarea class="form-control shadow-none" rows="3" placeholder="What did you think about this film?" name="content"></textarea>
         </div>
 
         <button class="btn btn-primary px-4 fw-bold" type="submit">

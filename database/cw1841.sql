@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2026 at 06:44 AM
+-- Generation Time: Apr 17, 2026 at 10:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -61,9 +61,12 @@ CREATE TABLE `films` (
 --
 
 INSERT INTO `films` (`id`, `title`, `description`, `releaseYear`, `image`, `createdAt`) VALUES
-(17, 'spiderman', 'no way home', 2000, '1775298416_spiderman.jpg', 2026),
-(19, 'archet', 'archet', 2000, '1775377170_spiderman.jpg', 2026),
-(20, 'tintin', 'tintin', 2000, '1774871862_tintin.jpg', 2026);
+(24, 'Làng xì Trum', 'xi trum mini', 2000, '1776068140_xitrum.jpg', 2026),
+(25, 'Transformer 1', 'tranformer robot', 2000, '1776068184_tran1.jpg', 2026),
+(26, 'gumbal', 'gumbal', 2000, '1776069148_gumbal.jpg', 2026),
+(27, 'Robo Trai cay', '', 2018, '1776069172_robottraicay.jpg', 2026),
+(28, 'Naruto', 'naruto', 2012, '1776069202_naruto.jpg', 2026),
+(29, 'Ninja turtle', '', 2019, '1776069287_ninjarua.jpg', 2026);
 
 -- --------------------------------------------------------
 
@@ -86,7 +89,9 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `content`, `image`, `rating`, `userId`, `filmId`, `createdAt`) VALUES
-(25, 'nice', '1775376127_spiderman.jpg', 5, 13, 17, 2026);
+(28, 'wow wow ❤️❤️', '', 5, 15, 24, 2026),
+(29, 'well', '', 5, 15, 25, 2026),
+(32, 'asd', '', 5, 15, 24, 2026);
 
 -- --------------------------------------------------------
 
@@ -108,7 +113,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `createdAt`) VALUES
 (12, 'admin', '123456', 1, 2026),
-(13, 'user', '123456', 0, 2026);
+(15, 'user', '123456', 0, 2026);
 
 -- --------------------------------------------------------
 
@@ -127,11 +132,8 @@ CREATE TABLE `wishlist` (
 --
 
 INSERT INTO `wishlist` (`id`, `filmId`, `userId`) VALUES
-(1, 17, 12),
-(2, 20, 12),
-(5, 19, 13),
-(9, 17, 13),
-(10, 17, 13);
+(21, 25, 15),
+(22, 24, 15);
 
 --
 -- Indexes for dumped tables
@@ -186,25 +188,25 @@ ALTER TABLE `emails`
 -- AUTO_INCREMENT for table `films`
 --
 ALTER TABLE `films`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables

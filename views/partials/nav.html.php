@@ -18,7 +18,7 @@
       <form class="d-flex ms-auto me-auto" action="index.php" method="get">
         <input type="hidden" name="page" value="films">
         <input type="hidden" name="action" value="search">
-        <input class="form-control me-2" type="search" name="search" placeholder="Search movies..." aria-label="Search" required>
+        <input class="form-control me-2" type="search" name="search" placeholder="Search movies..." aria-label="Search" >
         <button class="btn btn-outline-primary" type="submit">
           <i class="bi bi-search"></i>
         </button>

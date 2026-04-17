@@ -32,7 +32,7 @@ function createReviewService($content, $rating, $filmId)
     $userId = $_SESSION["user"]["id"];
     $createdAt = date('Y-m-d');
 
-    if (empty($content)) throw new Error("Content is required");
+    if ($content === "") throw new Error("Content of review is required");
     if (empty($rating)) throw new Error("rating is required");
     if (empty($filmId)) throw new Error("FilmId is required");
     if (empty($userId)) throw new Error("User do  not login yet");

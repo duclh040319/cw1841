@@ -15,11 +15,18 @@
                 </div>
                 <div class="card-body p-4">
                     <form method="post" action="admin.php?admin=<?= $_SESSION["user"]["role"] ?>&page=films&action=store" enctype="multipart/form-data">
-
+                        <?php if (!empty($err)): ?>
+                            <div class="alert alert-danger d-flex align-items-center py-2 shadow-sm" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <div class="small fw-bold">
+                                    <?= htmlspecialchars($err) ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="title" class="form-label small fw-bold text-muted text-uppercase">Film Title</label>
-                                <input type="text" name="title" id="title" class="form-control shadow-none" placeholder="e.g. Oppenheimer" required>
+                                <input type="text" name="title" id="title" class="form-control shadow-none" placeholder="e.g. Oppenheimer">
                             </div>
 
 
