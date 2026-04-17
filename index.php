@@ -94,8 +94,7 @@ switch ($page) {
         if ($action === "me") {
             login();
 
-            header("location: index.php");
-            exit();
+            
         } else {
             loginPage();
         }
@@ -111,8 +110,7 @@ switch ($page) {
 
         if ($action === "registered") {
             register();
-            header("location: index.php?page=login");
-            exit();
+            
         } else {
             registerPage();
         }

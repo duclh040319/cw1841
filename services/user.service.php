@@ -23,6 +23,10 @@ function createUserService($post)
     if (empty($username)) throw new Error("User name is required");
     if (empty($password)) throw new Error("Password is required");
 
+    $user = getUserByUsername($username);
+
+    if(!empty($user)) throw new Error("User exist");
+
     createUser($username, $password, $createdAt);
 }
 

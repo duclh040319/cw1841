@@ -3,7 +3,7 @@
         <div class="col-md-5 col-lg-4">
             <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-body p-5">
-                    
+
                     <div class="text-center mb-4">
                         <div class="display-6 mb-2">🔐</div>
                         <h2 class="fw-bold text-uppercase" style="letter-spacing: 2px;">Login</h2>
@@ -11,6 +11,15 @@
                     </div>
 
                     <form action="index.php?page=login&action=me" method="post">
+
+                        <?php if (!empty($err)): ?>
+                            <div class="alert alert-danger d-flex align-items-center py-2 shadow-sm" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <div class="small fw-bold">
+                                    <?= htmlspecialchars($err) ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                         <div class="mb-3">
                             <label for="username" class="form-label fw-semibold">Username</label>
                             <div class="input-group">
@@ -27,22 +36,22 @@
                             </div>
                         </div>
 
-                        
+
 
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-lg shadow-sm fw-bold">SIGN IN</button>
                         </div>
 
                         <div class="text-center mt-4">
-                            <p class="small mb-0 text-muted">Don't have an account? 
+                            <p class="small mb-0 text-muted">Don't have an account?
                                 <a href="index.php?page=register" class="text-primary fw-bold text-decoration-none">Register</a>
                             </p>
                         </div>
                     </form>
-                    
+
                 </div>
             </div>
-            
+
             <div class="text-center mt-3">
                 <a href="index.php" class="text-secondary small text-decoration-none">← Back to Home</a>
             </div>
